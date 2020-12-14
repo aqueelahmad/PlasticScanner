@@ -34,6 +34,19 @@ if not os.path.exists("/dev/spidev0.1"):
 ads = ADS1255()
 
 #take a measurement
+def do_measurement_light_off():
+    
+    for led in range(conf.number_of_leds):    
+        ads.set_led_off()                     #choose which pin to light up
+        time.sleep(0.05)
+        raw_value = ads.read_and_next_is(1)  #for cyclic single-channel reads
+        all_measurements.append(raw_value)
+        time.sleep(0.05)
+        ads.set_led_off()                       #all lights off
+        time.sleep(0.05)    
+        print("turning on LED", led+1, "Measured value:",raw_value)
+        
+#take a measurement
 def do_measurement():
     
     for led in range(conf.number_of_leds):    
@@ -82,7 +95,7 @@ while True:
     oled.show()
     wait_for_button_press()
     all_measurements = [plastic_type,"pre", time.strftime("%Y-%m-%d-%H:%M:%S")]
-    do_measurement()
+    do_measurement_light_off()
     with open('testresults.csv', mode='a') as test_results:
         test_results = csv.writer(test_results, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
         test_results.writerow(all_measurements)
@@ -113,7 +126,7 @@ while True:
     oled.show()     
     wait_for_button_press()
     all_measurements = [plastic_type,"post", time.strftime("%Y-%m-%d-%H:%M:%S")]
-    do_measurement()
+    do_measurement_light_off()
     with open('testresults.csv', mode='a') as test_results:
         test_results = csv.writer(test_results, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
         test_results.writerow(all_measurements)

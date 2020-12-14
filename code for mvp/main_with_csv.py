@@ -22,9 +22,20 @@ ads = ADS1255()
 for led in range(conf.number_of_leds):    
         ads.set_led_off()                     #choose which pin to light up
         time.sleep(0.05)
+
 #take a measurement
-def do_measurement():
-    
+def do_measurement_all_off(): 
+    for led in range(conf.number_of_leds):    
+        ads.set_led_off()                     #choose which pin to light up
+        time.sleep(0.05)
+        raw_value = ads.read_and_next_is(1)  #for cyclic single-channel reads
+        pre_measurements.append(raw_value)
+        time.sleep(0.05)
+        ads.set_led_off()                       #all lights off
+        time.sleep(0.05)    
+        print("turning on LED", led+1, "Measured value:",raw_value)
+        
+def do_measurement(): 
     for led in range(conf.number_of_leds):    
         ads.set_led_on(led)                     #choose which pin to light up
         time.sleep(0.05)
@@ -48,23 +59,21 @@ print("ID value of: ",chip_ID)
 while True:
     print("do you want to take a measurement? fill in type of plastic 'PE,PP,PS,PET,PVC,other,unknown'")
     plastic_type = input()
+    print("color object")
+    object_color = input()    
     print("name object")
-    object_name = input()    
-    print("type 'y' for pre measurement")
+    object_number = input()
+    print("type 'y' for measurement")
     pre = input()
     if pre == "y":
-        all_measurements = [plastic_type, object_name, "pre", time.strftime("%Y-%m-%d-%H:%M:%S")]
-        do_measurement()
-        with open('testresults_02dec.csv', mode='a') as test_results:
+        pre_measurements = [plastic_type, object_color, object_number, "pre", time.strftime("%Y-%m-%d-%H:%M:%S")]
+        do_measurement_all_off()
+        with open('testresults_07dec.csv', mode='a') as test_results:
             test_results = csv.writer(test_results, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-            test_results.writerow(all_measurements)
-    
-    print("type 'y' for actual measurement")
-    measure = input()
-    if measure == "y":
-        all_measurements = [plastic_type, object_name, "actual", time.strftime("%Y-%m-%d-%H:%M:%S")]
+            test_results.writerow(pre_measurements)
+        all_measurements = [plastic_type, object_color, object_number, "actual", time.strftime("%Y-%m-%d-%H:%M:%S")]
         do_measurement()
-        with open('testresults_02dec.csv', mode='a') as test_results:
+        with open('testresults_07dec.csv', mode='a') as test_results:
             test_results = csv.writer(test_results, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
             test_results.writerow(all_measurements)
 #     
