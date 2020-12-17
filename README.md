@@ -1,7 +1,7 @@
 # Plastic Scanner.
 This project aims to develop a simple handheld scanner that can detect five different types of plastic. At the end of the project, everything will be shared online so that also you can make one!
 
-The working principle is based on [this paper](https://www.researchgate.net/publication/337868860_Identification_of_Plastic_Types_Using_Discrete_Near_Infrared_Reflectance_Spectroscopy) by Straller and Gessler.
+The working principle is based on [this paper](https://www.researchgate.net/publication/337868860_Identification_of_Plastic_Types_Using_Discrete_Near_Infrared_Reflectance_Spectroscopy) and [this repo](https://github.com/arminstr/reremeter) by Straller and Gessler.
 
 More information van be found on [PlasticScanner.com](https://plasticscanner.com)
 
