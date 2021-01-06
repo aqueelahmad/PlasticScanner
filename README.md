@@ -5,7 +5,7 @@ The working principle is based on [this paper](https://www.researchgate.net/publ
 
 More information van be found on [PlasticScanner.com](https://plasticscanner.com)
 
-PCB design can be found on [here](jerzeek/nir-spectroscope-final-pcb)
+PCB design can be found on [here](https://easyeda.com/jerzeek/nir-spectroscope-final-pcb)
 
 </br>
 Hardware used in the project is under development but the goal is to run it on the following hardware:
