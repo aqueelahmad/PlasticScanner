@@ -239,11 +239,15 @@ class ADS1256(object):
         self.DRDY_TIMEOUT = conf.DRDY_TIMEOUT
         self.DRDY_DELAY   = conf.DRDY_DELAY
         self.light        = conf.light
+        
+        # Init GPIO for PWM
         IO.setwarnings(False) 
         IO.setmode (IO.BCM)
         IO.setup(self.light,IO.OUT)
-        self.pwmLight = IO.PWM(self.light, 10000)
+        self.pwmLight = IO.PWM(self.light, 8000)
+        # Start at DutyCycle 0 (OFF)
         self.pwmLight.start(0)
+
         # Only one GPIO input:
         if conf.DRDY_PIN is not None:
             self.DRDY_PIN = conf.DRDY_PIN
@@ -467,11 +471,14 @@ class ADS1256(object):
         self._chip_release()
 
     def set_led_on(self, led):
+        # If the control LED has to pe permanently on set the DutyCycle to 1
         self.pwmLight.ChangeDutyCycle(0.5)
+        # GPIO Register is masked according to led_table
         self.gpio = 0x0E & led_table[led+1]
 
     def set_led_off(self):
         self.pwmLight.ChangeDutyCycle(0)
+        # GPIO Register is masked to all OFF
         self.gpio = 0x00
 
     

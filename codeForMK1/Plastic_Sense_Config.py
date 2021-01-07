@@ -33,5 +33,7 @@ status = BUFFER_ENABLE
 mux = POS_AIN0 | NEG_AINCOM
 adcon = CLKOUT_OFF | SDCS_OFF | gain_flags
 drate  = DRATE_2000
+
+# This sets all IOs as OUTPUTS (all inputs would be 0xF0)
 gpio = 0x00
 
