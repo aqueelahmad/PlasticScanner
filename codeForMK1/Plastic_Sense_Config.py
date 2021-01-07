@@ -25,7 +25,7 @@ CLKIN_FREQUENCY = 7680000
 
 ####### runtime adjustable properties
 v_ref = 2.5
-gain_flags = GAIN_8
+gain_flags = GAIN_32
 
 
 ####### register settings
