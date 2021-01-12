@@ -472,7 +472,7 @@ class ADS1256(object):
 
     def set_led_on(self, led):
         # If the control LED has to pe permanently on set the DutyCycle to 1
-        self.pwmLight.ChangeDutyCycle(0.5)
+        self.pwmLight.ChangeDutyCycle(1)
         # GPIO Register is masked according to led_table
         self.gpio = 0x0E & led_table[led+1]
 
