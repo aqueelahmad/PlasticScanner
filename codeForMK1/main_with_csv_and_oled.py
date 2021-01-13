@@ -33,7 +33,7 @@ if not os.path.exists("/dev/spidev0.1"):
 ads = ADS1256()
 
 #take a measurement
-ddef do_measurement():
+def do_measurement():
     
     for led in range(conf.number_of_leds):    
         ads.set_led_on(led)                     #choose which pin to light up
@@ -72,8 +72,8 @@ def wait_for_button_press():
 # do a self calibration and read chip ID
 print("starting, welcome to the plastic scanner")
 ads.cal_self()
-chip_ID = ads.chip_ID()
-print("ID value of: ",chip_ID)
+id = ads.chip_ID
+print("ID value of: ",id)
 
 oled.fill(0)
 oled.show()

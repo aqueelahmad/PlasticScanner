@@ -217,6 +217,7 @@ class ADS1256(object):
             self.write_reg(REG_FSC2, value)
 
     @property
+    
     def chip_ID(self):
         """Get the numeric ID from the ADS chip.
         Useful to check if hardware is connected.
@@ -474,11 +475,8 @@ class ADS1256(object):
         self._chip_release()
 
     def set_led_on(self, led):
-<<<<<<< HEAD
-=======
         # If the control LED has to pe permanently on set the DutyCycle to 1
         self.pwmLight.ChangeDutyCycle(1)
->>>>>>> 605115b90620df8ac54a3be6812df972adca042e
         # GPIO Register is masked according to led_table
         self.gpio = 0x0E & led_table[led+1]
 

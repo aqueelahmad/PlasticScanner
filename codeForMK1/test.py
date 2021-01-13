@@ -37,5 +37,6 @@ print("ID value of: ",id)
 
 # Start data acquisition
 while True:
-    led = 1 #chooose which led to test
+    print("which led do you want to light?")
+    led = (input()-1)
     do_test(led)

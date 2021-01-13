@@ -29,16 +29,6 @@ def do_measurement():
         time.sleep(0)    
         print("turning on LED", led+1, "Measured value:",raw_value)
 
-def do_test():
-    led = 1 
-    ads.set_led_on(led)                     #choose which pin to light up
-    time.sleep(1)
-    raw_value = ads.read_and_next_is(1)  #for cyclic single-channel reads
-    time.sleep(1)
-    ads.set_led_off()                       #all lights off
-    time.sleep(2)    
-    print("turning on LED", led+1, "Measured value:",raw_value)
-
 
 
 # do a self calibration and read chip ID
@@ -49,7 +39,6 @@ print("ID value of: ",id)
 
 # Start data acquisition
 while True:
-    #print("do you want to take a measurement? type 'y'")
-    #answer = input()
-    #if answer == "y":
-    do_test()
+    print("do you want to take a measurement? type 'y'")
+    answer = input()
+    if answer == "y":

@@ -25,9 +25,9 @@ normalize.adapt(plastic_features)
 
 #make model, more layers can be added here, also different optimizers can be used
 norm_plastic_model = tf.keras.Sequential([
- normalize,
- layers.Dense(64),
- layers.Dense(1)
+                                        normalize,
+                                        layers.Dense(64),
+                                        layers.Dense(1)
 ])
 
 norm_plastic_model.compile(loss = tf.losses.MeanSquaredError(),
