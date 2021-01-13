@@ -22,7 +22,7 @@ ads = ADS1256()
 def do_measurement():
     for led in range(conf.number_of_leds):    
         ads.set_led_on(led)                     #choose which pin to light up
-        time.sleep(10)
+        time.sleep(1)
         raw_value = ads.read_and_next_is(1)  #for cyclic single-channel reads
         time.sleep(0)
         ads.set_led_off()                       #all lights off
@@ -42,3 +42,4 @@ while True:
     print("do you want to take a measurement? type 'y'")
     answer = input()
     if answer == "y":
+        do_measurement()

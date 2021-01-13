@@ -481,7 +481,7 @@ class ADS1256(object):
         self.gpio = 0x0E & led_table[led+1]
 
     def set_led_off(self):
-        #self.pwmLight.ChangeDutyCycle(0)
+        self.pwmLight.ChangeDutyCycle(0)
         # GPIO Register is masked to all OFF
         self.gpio = 0x00
 

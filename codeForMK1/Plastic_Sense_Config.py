@@ -15,7 +15,7 @@ CS_PIN      = 8
 DRDY_PIN    = 25
 RESET_PIN   = None
 PDWN_PIN    = None
-light       = 12
+light       = 18
 
 
 ####### Constant config settings

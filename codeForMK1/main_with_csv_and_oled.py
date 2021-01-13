@@ -10,6 +10,7 @@
 import sys
 import os
 import time
+import csv
 import Plastic_Sense_Config as conf
 from Plastic_Sense_Functions import ADS1256
 
@@ -25,7 +26,7 @@ i2c = board.I2C()
 oled = adafruit_ssd1306.SSD1306_I2C(WIDTH, HEIGHT, i2c, addr=0x3D)
 button = digitalio.DigitalInOut(board.D12)
 button.direction = digitalio.Direction.INPUT
-button.pull = digitalio.Pull.DOWN
+button.pull = digitalio.Pull.UP
 
 if not os.path.exists("/dev/spidev0.1"):
     raise IOError("Error: No SPI device. Check settings in /boot/config.txt")
@@ -37,12 +38,12 @@ def do_measurement():
     
     for led in range(conf.number_of_leds):    
         ads.set_led_on(led)                     #choose which pin to light up
-        time.sleep(0.05)
+        time.sleep(0.5)
         raw_value = ads.read_and_next_is(1)  #for cyclic single-channel reads
         all_measurements.append(raw_value)
-        time.sleep(0.05)
+        time.sleep(0.5)
         ads.set_led_off()                       #all lights off
-        time.sleep(0.05)    
+        time.sleep(0.5)    
         print("turning on LED", led+1, "Measured value:",raw_value)
 
 def do_measurement_light_off():
