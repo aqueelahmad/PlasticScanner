@@ -108,12 +108,12 @@ CMD_RESET   = 0xFE # Reset to power-on values
     #A2,A1,A0
     #sorry for the messed up wiring of my pcb
 led_table = {
-    3: 0x00, #D3
-    4: 0x02, #D4
-    1: 0x04, #D1
-    2: 0x06, #D2
-    5: 0x08, #D5
-    6: 0x09, #D6
-    7: 0x0C, #D7
-    8: 0x0E  #D8
+    1: 0x02, #D6
+    2: 0x0A, #D7
+    3: 0x06, #D8
+    4: 0x0E, #D9
+    5: 0x00, #D2
+    6: 0x08, #D3
+    7: 0x04, #D4
+    8: 0x0C  #D5
 }
