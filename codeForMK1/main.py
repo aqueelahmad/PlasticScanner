@@ -49,14 +49,7 @@ print("ID value of: ",id)
 
 # Start data acquisition
 while True:
-<<<<<<< HEAD
     #print("do you want to take a measurement? type 'y'")
     #answer = input()
     #if answer == "y":
     do_test()
-=======
-    print("do you want to take a measurement? type 'y'")
-    answer = input()
-    if answer == "y":
-        do_measurement()
->>>>>>> 605115b90620df8ac54a3be6812df972adca042e
