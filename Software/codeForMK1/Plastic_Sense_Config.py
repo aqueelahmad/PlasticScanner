@@ -25,14 +25,14 @@ CLKIN_FREQUENCY = 7680000
 
 ####### runtime adjustable properties
 v_ref = 2.5
-gain_flags = GAIN_32
+gain_flags = GAIN_64
 
 
 ####### register settings
 status = BUFFER_ENABLE
 mux = POS_AIN0 | NEG_AINCOM
 adcon = CLKOUT_OFF | SDCS_OFF | gain_flags
-drate  = DRATE_2000
+drate  = DRATE_100
 
 # This sets all IOs as OUTPUTS (all inputs would be 0xF0)
 gpio = 0x00

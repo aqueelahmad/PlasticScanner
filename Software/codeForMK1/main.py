@@ -12,6 +12,7 @@ import os
 import time
 import Plastic_Sense_Config as conf
 from Plastic_Sense_Functions import ADS1256
+import numpy as np
 
 if not os.path.exists("/dev/spidev0.1"):
     raise IOError("Error: No SPI device. Check settings in /boot/config.txt")
@@ -21,13 +22,15 @@ ads = ADS1256()
 #take a measurement
 def do_measurement():
     for led in range(conf.number_of_leds):    
-        ads.set_led_on(led)                     #choose which pin to light up
-        time.sleep(1)
-        raw_value = ads.read_and_next_is(1)  #for cyclic single-channel reads
-        time.sleep(0)
-        ads.set_led_off()                       #all lights off
-        time.sleep(0)    
-        print("turning on LED", led+1, "Measured value:",raw_value)
+        values = []
+        for x in range(10):
+            ads.set_led_on(led) #choose which pin to light up
+            time.sleep(0.001)
+            values.append(ads.read_and_next_is(1)) #for cyclic single-channel reads
+            #print("turning on LED", led+1, "Measured value:",values[x])
+            ads.set_led_off() #all lights off
+        mean_value = np.mean(values)
+        print("MEAN for LED ", led+1, "Value:", mean_value)
 
 
 
