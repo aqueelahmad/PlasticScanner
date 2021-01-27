@@ -17,14 +17,16 @@ from Plastic_Sense_Functions import ADS1256
 ################################################
 ############Tensorflow part
 ################################################
-import pandas as pd
+#import pandas as pd
 import numpy as np
 import tflite_runtime.interpreter as tflite
 
 # Load the TFLite model and allocate tensors.
-interpreter = tflite.Interpreter(model_path="converted_model.tflite")
+interpreter = tflite.Interpreter(model_path="../MachineLearningModel/model.tflite")
 interpreter.allocate_tensors()
 
+input_details = interpreter.get_input_details()
+output_details = interpreter.get_output_details()
 
 
 plastics = ["PET", "HDPE", "PCV", "LDPE", "PP", "PS","OTHER"]
@@ -64,7 +66,7 @@ def do_measurement():
         ads.set_led_off()                       #all lights off
         time.sleep(0.2)    
         print("turning on LED", led+1, "Measured value:",raw_value)
-        update_screen(".", (2*led+94), 0)
+        update_screen(".", (2*led+94), 10)
 
 def do_measurement_light_off(type):
     for led in range(conf.number_of_leds):    
@@ -73,10 +75,10 @@ def do_measurement_light_off(type):
         raw_value = ads.read_and_next_is(1)  #for cyclic single-channel reads
         if type == "pre":
             all_measurementspre.append(raw_value)
-            update_screen(".", (2*led+78), 0)
+            update_screen(".", (2*led+78), 10)
         if type == "post":
             all_measurementspost.append(raw_value)
-            update_screen(".", (2*led+110), 0)
+            update_screen(".", (2*led+110), 10)
         time.sleep(0.05)
         ads.set_led_off()                       #all lights off
         time.sleep(0.05)    
@@ -125,10 +127,10 @@ while True:
     update_screen("-Press ---->", 0, 10)
     wait_for_button_press()
     update_screen("-Starting", 0, 20)
-    update_screen(".", (78), -3)
-    update_screen(".", (94), -3)
-    update_screen(".", (110), -3)
-    update_screen(".", (126), -3)
+    update_screen(".", (78), 7)
+    update_screen(".", (94), 7)
+    update_screen(".", (110), 7)
+    update_screen(".", (126), 7)
 
     all_measurementspre = [plastic_type,"pre", time.strftime("%Y-%m-%d-%H:%M:%S")]
     do_measurement_light_off("pre")
@@ -143,7 +145,7 @@ while True:
         test_results.writerow(all_measurementspre)
         test_results.writerow(all_measurementsactual)
         test_results.writerow(all_measurementspost)
-    update_screen("-Making a guess", 0, 40)
+    update_screen("-Making a guess:", 0, 40)
     
 ################################################
 ############Tensorflow part
@@ -159,14 +161,14 @@ while True:
     input_shape = input_details[0]['shape']
     input_data = np.array(np.random.random_sample(input_shape), dtype=np.float32)
     interpreter.set_tensor(input_details[0]['index'], input_data)
-
+    print(input_data)
     interpreter.invoke()
 
     # The function `get_tensor()` returns a copy of the tensor data.
     # Use `tensor()` in order to get a pointer to the tensor.
     output_data = interpreter.get_tensor(output_details[0]['index'])
-    print(output_data)
-
+    print(output_data[0][0])
+    update_screen(str(output_data[0][0]), 0, 50)
 
 
 

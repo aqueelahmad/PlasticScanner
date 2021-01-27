@@ -42,9 +42,10 @@ norm_plastic_model.summary()
 norm_plastic_model.save("plastic_estimator")
 
 # Convert the model to TF-LITE
-converter = tf.lite.TFLiteConverter.from_keras_model(model)
+converter = tf.lite.TFLiteConverter.from_keras_model(norm_plastic_model)
 tflite_model = converter.convert()
 
 # Save the model.
 with open('model.tflite', 'wb') as f:
   f.write(tflite_model)
+

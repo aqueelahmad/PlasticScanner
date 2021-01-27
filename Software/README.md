@@ -11,7 +11,7 @@ the first program needs to do the following thing:
 - [x] measure brightness when LED's flash
 - [ ] preprocess data, clean it and normalize
 - [x] Save measured values for later model training
-- [ ] predict plastic based on model, TFlite?
+- [x] predict plastic based on model, TFlite?
 - [x] show result on screen.
 
 the second program need to do the following:
@@ -41,19 +41,29 @@ Under interfaces enable:
 - spi
 - i2c
 
-Also at Performance change the video memory to 256mb
 
 excecute the following commands:
 ```bash
-pip3 install scikit-learn
-pip3 install matplotlib
-pip3 install pandas
-pip3 install numpy
-sudo apt-get install libatlas-base-dev
 cd Downloads
 git clone https://github.com/Jerzeek/PlasticScanner
-pip3 install adafruit-circuitpython-ssd1306
-sudo apt-get install python3-pil
-
-
+cd PlasticScanner
+sudo bash install.sh
 ```
+
+# Using the software
+in the folder codeForMK1 there are the following files:
+- database_collection.py -------Run this if you want to measure known plastics to build a calibration database
+- estimation_front.py -----------Run this if you want to scan a plastic and have the scanner predict what plastic it is made of.
+- Plastic_Sense_Config.py ------Has all the information about the board, like the amounth of LEDs connected or to which pin the button is connected
+- Plastic_Sense_Functions.py ---This does all the magic for you in the background, it talk to the breakout board and retrieves information (you dont have to change anything here, ever.).
+- Plastic_Sense_Definitions.py --This helps the funtions program to execute the right commands (also dont make changes here, ever.).
+
+in the folder MachineLearningModel there are the following files:
+- traning_model.py -------Run this to train your model with the .csv file made by the database_collection.py file
+- model.tflite ------------This file is made by running the training_model.py file
+- plastic_estimator -------Ths folder is made by running the training_model.py file
+- test_TFmodel.py ---------Takes the first sample from the test_data.csv and runs it through the TF model, and shows if it is correct.
+- test_TFLitemodel.py -----Inputs random data in the model.tflite and shows an output
+- sample_data.csv ---------Is used to train the model
+- test_data.csv -----------Is used to test the model
+- tflite_runtime-2.3.1-cp37-cp37m-linux_armv6l.whl ----Is used to install TFlite on a raspberry pi zero
