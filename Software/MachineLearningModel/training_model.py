@@ -1,3 +1,8 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
+"""  Run this to train your model with the .csv file made by the database_collection.py file   """
+
 #loading data from csv
 import pandas as pd
 import numpy as np

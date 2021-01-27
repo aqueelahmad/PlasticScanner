@@ -1,3 +1,4 @@
+""" This helps the funtions program to execute the right commands (also dont make changes here, ever.). """
 ################### CONSTANT DEFINITIONS for class ADS1256 ####################
 # Register addresses:
 REG_STATUS  = 0x00
@@ -102,8 +103,8 @@ CMD_STANDBY = 0xFD # Begin standby mode
 CMD_RESET   = 0xFE # Reset to power-on values
 
 
-
-
+# This sets all IOs as OUTPUTS (all inputs would be 0xF0)
+gpio = 0x00
 ################### demux table ###########
     #A2,A1,A0
     #sorry for the messed up wiring of my pcb

@@ -1,12 +1,8 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
+"""  Run this if you want to measure known plastics to build a calibration database   """
 
-# Plastic Sense is a project by Jerry de Vos
-# written on 16 nov 2020
-# it is quite shitty code i know
-# it is based on the PipyADC Lib (https://github.com/ul-gh/PiPyADC)
-# used to detect what type of plastic a product is made of
 import sys
 import os
 import time
@@ -34,8 +30,10 @@ if not os.path.exists("/dev/spidev0.1"):
 
 ads = ADS1256()
 
+
 #take a measurement
-def do_measurement():  
+def do_measurement():
+
     for led in range(conf.number_of_leds):    
         ads.set_led_on(led)                     #choose which pin to light up
         time.sleep(0.2)

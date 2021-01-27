@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-
+""" This does all the magic for you in the background, it talk to the breakout 
+    board and retrieves information (you dont have to change anything here, ever.). """
+    
 import time
 import struct
 import wiringpi as wp

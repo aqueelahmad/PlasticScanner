@@ -1,3 +1,8 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
+"""  Takes the first sample from the test_data.csv and runs it through the TF model, and shows if it is correct.   """
+
 #loading data from csv
 import pandas as pd
 import numpy as np

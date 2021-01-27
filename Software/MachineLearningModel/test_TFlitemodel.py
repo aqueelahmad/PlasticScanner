@@ -1,3 +1,8 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
+"""  Inputs random data in the model.tflite and shows an output  """
+
 import numpy as np
 import tflite_runtime.interpreter as tflite
 

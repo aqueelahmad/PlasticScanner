@@ -1,5 +1,8 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
+
+""" Has all the information about the board, like the amounth of LEDs connected 
+    or to which pin the button is connected """
 from Plastic_Sense_Definitions import *
 
 ######### Number of leds
@@ -34,5 +37,5 @@ mux = POS_AIN0 | NEG_AINCOM
 adcon = CLKOUT_OFF | SDCS_OFF | gain_flags
 drate  = DRATE_100
 
-# This sets all IOs as OUTPUTS (all inputs would be 0xF0)
-gpio = 0x00
+
+

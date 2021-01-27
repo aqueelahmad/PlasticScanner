@@ -1,12 +1,8 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
+"""  Run this if you want to scan a plastic and have the scanner predict what plastic it is made of.  """
 
-# Plastic Sense is a project by Jerry de Vos
-# written on 16 nov 2020
-# it is quite shitty code i know
-# it is based on the PipyADC Lib (https://github.com/ul-gh/PiPyADC)
-# used to detect what type of plastic a product is made of
 import sys
 import os
 import time
